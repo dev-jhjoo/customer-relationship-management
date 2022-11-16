@@ -3,19 +3,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // view 경로 설정
-// app.set('views', __dirname.replace('src/','') + '/');
-app.set('views', __dirname + '/');
-
-// 화면 engine을 ejs로 설정
-app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
+app.set('views', __dirname + '/');
+app.use('static', express.static('assets'));
 
 app.get('/', (req, res) => {
     res.render('index.html')
-});
-
-app.get('/dashboard', (req, res) => {
-    res.render('../pages/dashboard.html')
 });
 
 app.listen(port, () => {
