@@ -10,26 +10,31 @@
 </head>
 <body>
 
-  <!-- login card -->
-  <div class="mt-5" style="display: flex; justify-content: center; flex-direction: row;">
-    <div class="card border-secondary mt-5" style="width: 18rem; display: flex; justify-content: center; flex-direction: row;">
-      <div class="card-body">
-        <h5 class="card-title mb-3">고객관리 시스템</h5>
-        <form>
-          <div class="mb-3">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address">
-          </div>
-          <div class="mb-3">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-          <div class="text-end">
-            <button type="button" class="btn btn-primary btn-sm" id="signIn">로그인</button>
-            <button type="button" class="btn btn-primary btn-sm" id="signUp">회원가입</button>
-          </div>
-        </form>
+  <!-- nav bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">고객관리</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">메뉴1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">메뉴2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">메뉴3</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+  </nav>
 
   <!-- firebase -->
   <script defer src="/__/firebase/9.14.0/firebase-app.js"></script>
@@ -46,11 +51,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
-  <script type="text/javascript">
-    $('#signIn').click(function(){
-      // login 기능 구현부
-      location.href="main.html";
-    });
-  </script>
 </body>
 </html>
