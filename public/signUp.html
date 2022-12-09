@@ -17,14 +17,17 @@
         <h5 class="card-title mb-3">고객관리 시스템</h5>
         <form>
           <div class="mb-3">
+            <input type="name" class="form-control" id="inputName" placeholder="Name">
+          </div>
+          <div class="mb-3">
             <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Email address">
           </div>
           <div class="mb-3">
             <input type="password" class="form-control" id="inputPassword" placeholder="Password">
           </div>
           <div class="text-end">
-            <button type="button" class="btn btn-primary btn-sm" id="signIn">로그인</button>
-            <button type="button" class="btn btn-primary btn-sm" id="signUp">회원가입</button>
+            <button type="button" class="btn btn-primary btn-sm" id="back">뒤로가기</button>
+            <button type="button" class="btn btn-primary btn-sm" id="register">가입하기</button>
           </div>
         </form>
       </div>
@@ -41,34 +44,38 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
     import { 
         getAuth, 
-        signInWithEmailAndPassword
+        createUserWithEmailAndPassword,
+        updateProfile 
     } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
     import firebaseConfig from './env.js';
-
+    
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
 
-    const login = async (email, password) => {
-      const auth = getAuth();
-      await signInWithEmailAndPassword(auth, email, password)
-      .then(res => {
-        alert('Welcome \r\nemail:' + res.user.email + ' \r\nuid:' + res.user.uid);
-        location.href="main.html";  
-      })
-      .catch(e => {alert(e)});
+    const signUp = async (name,email,password) => {
+        const auth = getAuth();
+        await createUserWithEmailAndPassword(auth, email, password)
+        .then(async res => {
+            await updateProfile(res.user, {displayName:name});
+            console.log('성공!')
+            location.href="index.html";
+        })
+        .catch(e => {
+            alert(e);
+        });
     }
 
-    $('#signIn').click(function(){
-      // signIn 기능 구현부
-      const email = $("#inputEmail").val();
-      const password = $("#inputPassword").val();
-      login(email, password);
+    $('#back').click(function(){
+      history.back();
     });
-    $('#signUp').click(function(){
-      // signUp 기능 구현부
-      location.href="signUp.html";
+    $('#register').click(function(){
+        const name = $("#inputName").val();
+        const email = $("#inputEmail").val();
+        const password = $("#inputPassword").val();
+
+        signUp(name, email, password);
     });
   </script>
 </body>
